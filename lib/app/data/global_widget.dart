@@ -2,6 +2,29 @@ import 'package:flutter/material.dart';
 
 const yellowColor = Color(0xFFF7CF32);
 
+AppBar appbar(
+    BuildContext context,
+    String title,
+    IconData icon,
+    Function() tap,
+    Color bgColor,
+    ) {
+  return AppBar(
+    title: Text(
+      title,
+      style: TextStyle(fontWeight: FontWeight.w400, color: Colors.white),
+    ),
+    backgroundColor: bgColor,
+    actions: [
+      IconButton(
+        onPressed: tap,
+        icon: Icon(icon),
+      ),
+    ],
+  );
+}
+
+
 Widget numberBox({required int number, void Function()? onPressed}) {
   return Container(
 
