@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
 
   TextEditingController inputController = TextEditingController();
+
   // TextEditingController answerController = TextEditingController();
 
   @override
@@ -20,6 +21,7 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   bool isCalculate = false;
 
   double evaluateExpression(String expression) {

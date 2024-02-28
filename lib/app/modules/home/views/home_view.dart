@@ -15,13 +15,20 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
+      backgroundColor: bgColor,
+      appBar: /*AppBar(
         title: const Text('Calculator App',style:
         TextStyle(fontSize: 18, color: Colors.white)),
         centerTitle: true,
         backgroundColor: bgColor,
+      )*/appbar(
+        context,
+        'Calculator App',
+        Icons.history,
+            () {
+          Navigator.pushNamed(context, '/history');
+        },bgColor,
       ),
-      backgroundColor: bgColor,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
 
