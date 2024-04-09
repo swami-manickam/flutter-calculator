@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:fluttercalculator/app/data/history_data.dart';
+import 'package:fluttercalculator/app/utils/db_helper.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-
   TextEditingController inputController = TextEditingController();
 
-  // TextEditingController answerController = TextEditingController();
+  final dbHelper = DBHelper();
 
   @override
   void onInit() {
@@ -24,7 +25,7 @@ class HomeController extends GetxController {
 
   bool isCalculate = false;
 
-  double evaluateExpression(String expression) {
+  String evaluateExpression(String expression) {
     List<String> operators = ['+', '-', '*', '/'];
 
     // Remove any whitespace from the expression
@@ -69,9 +70,19 @@ class HomeController extends GetxController {
           break;
       }
     }
+
+    // Convert the result to a string before returning
+    String resultString = result.toString();
+
+    addToHistory(expression, resultString);
     isCalculate = true;
-    inputController.text = result.toString();
-    return result;
+    inputController.text = resultString;
+    return resultString;
   }
 
+  void addToHistory(String calData, String result) async {
+    final id = DateTime.now().millisecondsSinceEpoch.toString();
+    await dbHelper
+        .insertData(HistoryData(time: id, calData: calData, result: result));
+  }
 }
