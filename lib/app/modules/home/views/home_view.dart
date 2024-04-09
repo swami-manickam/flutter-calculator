@@ -1,37 +1,29 @@
-import 'package:fluttercalculator/app/data/global_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttercalculator/app/data/global_widget.dart';
+import 'package:fluttercalculator/app/utils/db_helper.dart';
 import 'package:get/get.dart';
-import '../controllers/home_controller.dart';
 
-import 'package:fluttercalculator/app/widget/button.dart';
+import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
-  static const bgColor = Color.fromRGBO(40, 150, 220, 1);
-  static const headerColor = Color.fromRGBO(90, 148, 40, 1);
-
   @override
   Widget build(BuildContext context) {
-
+    DBHelper _db = DBHelper();
     return Scaffold(
       backgroundColor: bgColor,
-      appBar: /*AppBar(
-        title: const Text('Calculator App',style:
-        TextStyle(fontSize: 18, color: Colors.white)),
-        centerTitle: true,
-        backgroundColor: bgColor,
-      )*/appbar(
+      appBar: appbar(
         context,
         'Calculator App',
         Icons.history,
-            () {
+        () {
           Navigator.pushNamed(context, '/history');
-        },bgColor,
+        },
+        bgColor,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-
         child: Column(
           children: [
             const SizedBox(
@@ -41,21 +33,15 @@ class HomeView extends GetView<HomeController> {
             TextFormField(
               readOnly: true,
               controller: controller.inputController,
-              style: TextStyle(fontSize: 32,color: Colors.white),
-              decoration: const InputDecoration(border: InputBorder.none,),
+              style: const TextStyle(fontSize: 32, color: Colors.white),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+              ),
               textAlign: TextAlign.end,
             ),
             const SizedBox(
               height: 4,
             ),
-            // const SizedBox(
-            //   height: 8,
-            // ),
-            // TextFormField(
-            //   readOnly: true,
-            //   controller: controller.inputController,
-            //   decoration: const InputDecoration(border: OutlineInputBorder()),
-            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -69,7 +55,8 @@ class HomeView extends GetView<HomeController> {
                       if (controller.inputController.text == "0") {
                         controller.inputController.text = "1";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}1";
+                        controller.inputController.text =
+                            "${controller.inputController.text}1";
                       }
                     }),
                 numberBox(
@@ -82,7 +69,8 @@ class HomeView extends GetView<HomeController> {
                       if (controller.inputController.text == "0") {
                         controller.inputController.text = "2";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}2";
+                        controller.inputController.text =
+                            "${controller.inputController.text}2";
                       }
                     }),
                 numberBox(
@@ -95,14 +83,16 @@ class HomeView extends GetView<HomeController> {
                       if (controller.inputController.text == "0") {
                         controller.inputController.text = "3";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}3";
+                        controller.inputController.text =
+                            "${controller.inputController.text}3";
                       }
                     }),
                 operationBox(
                     text: "+",
                     onPressed: () {
-                      if (controller.inputController.text != "" ) {
-                        controller.inputController.text = "${controller.inputController.text}+";
+                      if (controller.inputController.text != "") {
+                        controller.inputController.text =
+                            "${controller.inputController.text}+";
                       }
                     }),
               ],
@@ -123,7 +113,8 @@ class HomeView extends GetView<HomeController> {
                       if (controller.inputController.text == "0") {
                         controller.inputController.text = "4";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}4";
+                        controller.inputController.text =
+                            "${controller.inputController.text}4";
                       }
                     }),
                 numberBox(
@@ -136,7 +127,8 @@ class HomeView extends GetView<HomeController> {
                       if (controller.inputController.text == "0") {
                         controller.inputController.text = "5";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}5";
+                        controller.inputController.text =
+                            "${controller.inputController.text}5";
                       }
                     }),
                 numberBox(
@@ -149,14 +141,16 @@ class HomeView extends GetView<HomeController> {
                       if (controller.inputController.text == "0") {
                         controller.inputController.text = "6";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}6";
+                        controller.inputController.text =
+                            "${controller.inputController.text}6";
                       }
                     }),
                 operationBox(
                     text: "-",
                     onPressed: () {
-                      if (controller.inputController.text != "" ) {
-                        controller.inputController.text = "${controller.inputController.text}-";
+                      if (controller.inputController.text != "") {
+                        controller.inputController.text =
+                            "${controller.inputController.text}-";
                       }
                     }),
               ],
@@ -173,10 +167,12 @@ class HomeView extends GetView<HomeController> {
                       if (controller.isCalculate == true) {
                         controller.inputController.text = "";
                         controller.isCalculate = false;
-                      }if(controller.inputController.text == "0"){
+                      }
+                      if (controller.inputController.text == "0") {
                         controller.inputController.text = "7";
-                      }else{
-                        controller.inputController.text = "${controller.inputController.text}7";
+                      } else {
+                        controller.inputController.text =
+                            "${controller.inputController.text}7";
                       }
                     }),
                 numberBox(
@@ -186,10 +182,11 @@ class HomeView extends GetView<HomeController> {
                         controller.inputController.text = "";
                         controller.isCalculate = false;
                       }
-                      if(controller.inputController.text == "0"){
+                      if (controller.inputController.text == "0") {
                         controller.inputController.text = "8";
-                      }else{
-                        controller.inputController.text = "${controller.inputController.text}8";
+                      } else {
+                        controller.inputController.text =
+                            "${controller.inputController.text}8";
                       }
                     }),
                 numberBox(
@@ -199,17 +196,19 @@ class HomeView extends GetView<HomeController> {
                         controller.inputController.text = "";
                         controller.isCalculate = false;
                       }
-                      if(controller.inputController.text == "0"){
+                      if (controller.inputController.text == "0") {
                         controller.inputController.text = "9";
-                      }else{
-                        controller.inputController.text = "${controller.inputController.text}9";
+                      } else {
+                        controller.inputController.text =
+                            "${controller.inputController.text}9";
                       }
                     }),
                 operationBox(
                     text: "/",
                     onPressed: () {
-                      if (controller.inputController.text != "" ) {
-                        controller.inputController.text = "${controller.inputController.text}/";
+                      if (controller.inputController.text != "") {
+                        controller.inputController.text =
+                            "${controller.inputController.text}/";
                       }
                     }),
               ],
@@ -227,10 +226,12 @@ class HomeView extends GetView<HomeController> {
                         controller.inputController.text = "";
                         controller.isCalculate = false;
                       }
-                      if (controller.inputController.text == "" || controller.inputController.text == "0") {
+                      if (controller.inputController.text == "" ||
+                          controller.inputController.text == "0") {
                         controller.inputController.text = "0";
                       } else {
-                        controller.inputController.text = "${controller.inputController.text}0";
+                        controller.inputController.text =
+                            "${controller.inputController.text}0";
                       }
                     }),
                 operationBox(
@@ -240,20 +241,29 @@ class HomeView extends GetView<HomeController> {
                       // controller.answerController.text = "";
                     },
                     onPressed: () {
-                      controller.inputController.text = controller.inputController.text.replaceRange(controller.inputController.text.length -1, null, "");
+                      controller.inputController.text =
+                          controller.inputController.text.replaceRange(
+                              controller.inputController.text.length - 1,
+                              null,
+                              "");
                     }),
                 operationBox(
                     text: "*",
                     onPressed: () {
-                      if (controller.inputController.text != "" ) {
-                        controller.inputController.text = "${controller.inputController.text}*";
+                      if (controller.inputController.text != "") {
+                        controller.inputController.text =
+                            "${controller.inputController.text}*";
                       }
                     }),
                 operationBox(
                     text: "=",
                     onPressed: () {
-                      if (controller.inputController.text != "" || controller.inputController.text != "0") {
-                        controller.evaluateExpression(controller.inputController.text);
+                      if (controller.inputController.text != "" ||
+                          controller.inputController.text != "0") {
+                        var resultData = controller.evaluateExpression(
+                            controller.inputController.text);
+                        /*controller.addToHistory(
+                            controller.inputController.text, resultData);*/
                       }
                     }),
               ],
