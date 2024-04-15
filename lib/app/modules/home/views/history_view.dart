@@ -10,7 +10,8 @@ class HistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('History'),
+        leading: BackButton(color: Colors.white),
+        title: const Text('History', style: TextStyle(color: Colors.white)),
         centerTitle: true,
         backgroundColor: bgColor,
       ),
@@ -22,12 +23,27 @@ class HistoryView extends StatelessWidget {
             itemCount: controller.historyList.length,
             itemBuilder: (context, index) {
               final item = controller.historyList[index];
-              return ListTile(
-                title: Text(item.calData),
-                subtitle: Text(item.result),
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () => controller.removeFromHistory(item.id!),
+              return Container(
+                margin: const EdgeInsets.only(top: 12, left: 16, right: 16),
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    color: bgColor, borderRadius: BorderRadius.circular(8)),
+                child: ListTile(
+                  title: Text(
+                    item.calData,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  subtitle: Text(
+                    item.result,
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(
+                      Icons.delete,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => controller.removeFromHistory(item.id!),
+                  ),
                 ),
               );
             },
